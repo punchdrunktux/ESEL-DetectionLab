@@ -364,6 +364,14 @@ function post_build_checks {
   $ATA_CHECK = download -URL 'https://192.168.38.103' -SuccessOn401
   Write-Host "[post_build_checks] ATA Result: $ATA_CHECK"
 
+  Write-Host '[post_build_checks] Running Caldera Check.'
+  $CALDERA_CHECK = download -URL 'http://192.168.38.10:8888/login' -SuccessOn401
+  Write-Host "[post_build_checks] Caldera Result: $CALDERA_CHECK"
+
+  Write-Host '[post_build_checks] Running Caldera Check.'
+  $COVENANT_CHECK = download -URL 'https://192.168.38.10:7443/' -SuccessOn401
+  Write-Host "[post_build_checks] Caldera Result: $COVENANT_CHECK"
+
   if ($SPLUNK_CHECK -eq $false) {
     Write-Warning 'Splunk failed post-build tests and may not be functioning correctly.'
   }
@@ -372,6 +380,12 @@ function post_build_checks {
   }
   if ($ATA_CHECK -eq $false) {
     Write-Warning 'MS ATA failed post-build tests and may not be functioning correctly.'
+  }
+  if ($CALDERA_CHECK -eq $false) {
+    Write-Warning 'Caldera failed post-build tests and may not be functioning correctly.'
+  }
+  if ($COVENANT_CHECK -eq $false) {
+    Write-Warning 'CovenantC2 failed post-build tests and may not be functioning correctly.'
   }
 }
 
