@@ -1,0 +1,701 @@
+Bringing machine 'dc' up with 'virtualbox' provider...
+==> dc: Importing base box 'detectionlab/win2016'...
+[KProgress: 10%[KProgress: 60%[KProgress: 90%[K==> dc: Matching MAC address for NAT networking...
+==> dc: Checking if box 'detectionlab/win2016' version '1.4' is up to date...
+==> dc: Setting the name of the VM: dc.windomain.local
+==> dc: Fixed port collision for 22 => 2222. Now on port 2201.
+==> dc: Clearing any previously set network interfaces...
+==> dc: Preparing network interfaces based on configuration...
+    dc: Adapter 1: nat
+    dc: Adapter 2: hostonly
+==> dc: Forwarding ports...
+    dc: 5985 (guest) => 55985 (host) (adapter 1)
+    dc: 5986 (guest) => 55986 (host) (adapter 1)
+    dc: 22 (guest) => 2201 (host) (adapter 1)
+==> dc: Running 'pre-boot' VM customizations...
+==> dc: Booting VM...
+==> dc: Waiting for machine to boot. This may take a few minutes...
+    dc: WinRM address: 127.0.0.1:55985
+    dc: WinRM username: vagrant
+    dc: WinRM execution_time_limit: PT2H
+    dc: WinRM transport: plaintext
+==> dc: Machine booted and ready!
+==> dc: Checking for guest additions in VM...
+    dc: The guest additions on this VM do not match the installed version of
+    dc: VirtualBox! In most cases this is fine, but in rare cases it can
+    dc: prevent things such as shared folders from working properly. If you see
+    dc: shared folder errors, please make sure the guest additions within the
+    dc: virtual machine match the version of VirtualBox you have installed on
+    dc: your host and reload your VM.
+    dc: 
+    dc: Guest Additions Version: 6.0.10
+    dc: VirtualBox Version: 5.2
+==> dc: Setting hostname...
+==> dc: Waiting for machine to reboot...
+==> dc: Configuring and enabling network interfaces...
+==> dc: Mounting shared folders...
+    dc: /vagrant => /Users/rob/dev/DetectionLab/Vagrant
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/fix-second-network.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: Nothing to do for other providers than VMware.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/provision.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [07:10] Setting timezone to UTC...
+    dc: [07:10] Disable IPv6 on all network adatpers...
+    dc: Name                           DisplayName                                        ComponentID     
+    dc: ----                           -----------                                        -----------     
+    dc: Ethernet 2                     Internet Protocol Version 6 (TCP/IPv6)             ms_tcpip6       
+    dc: Ethernet 3                     Internet Protocol Version 6 (TCP/IPv6)             ms_tcpip6       
+    dc: The operation completed successfully.
+    dc: [07:10] Current domain is set to 'workgroup'. Time to join the domain!
+    dc: Install bginfo
+    dc: [07:10] Installing BGInfo...
+    dc: PSPath            : Microsoft.PowerShell.Core\FileSystem::C:\Program Files\sysinternals
+    dc: PSParentPath      : Microsoft.PowerShell.Core\FileSystem::C:\Program Files
+    dc: PSChildName       : sysinternals
+    dc: PSDrive           : C
+    dc: PSProvider        : Microsoft.PowerShell.Core\FileSystem
+    dc: PSIsContainer     : True
+    dc: Name              : sysinternals
+    dc: Parent            : Program Files
+    dc: Exists            : True
+    dc: Root              : C:\
+    dc: FullName          : C:\Program Files\sysinternals
+    dc: Extension         : 
+    dc: CreationTime      : 12/16/2019 7:10:43 AM
+    dc: CreationTimeUtc   : 12/16/2019 3:10:43 PM
+    dc: LastAccessTime    : 12/16/2019 7:10:43 AM
+    dc: LastAccessTimeUtc : 12/16/2019 3:10:43 PM
+    dc: LastWriteTime     : 12/16/2019 7:10:43 AM
+    dc: LastWriteTimeUtc  : 12/16/2019 3:10:43 PM
+    dc: Attributes        : Directory
+    dc: Mode              : d-----
+    dc: BaseName          : sysinternals
+    dc: Target            : {}
+    dc: LinkType          : 
+    dc: [07:10] Installing RSAT tools
+    dc: Success       : True
+    dc: RestartNeeded : No
+    dc: FeatureResult : {Remote Server Administration Tools, Active Directory Administrative Center, 
+    dc:                 Active Directory module for Windows PowerShell, AD DS and AD LDS Tools...}
+    dc: ExitCode      : Success
+    dc: [07:11] Creating domain controller...
+    dc:                                                                            
+    dc: The task has completed successfully.
+    dc: See log %windir%\security\logs\scesrv.log for detail info.
+    dc: Completed 5 percent (0/18) 	Process Security Policy area        
+    dc: Completed 22 percent (3/18) 	Process Security Policy area        
+    dc: Completed 44 percent (7/18) 	Process Security Policy area        
+    dc: Completed 61 percent (10/18) 	Process Security Policy area        
+    dc: Completed 77 percent (13/18) 	Process Security Policy area        
+    dc: Completed 100 percent (18/18) 	Process Security Policy area        
+    dc:                                                                            
+    dc: The task has completed successfully.
+    dc: See log %windir%\security\logs\scesrv.log for detail info.
+    dc: Success       : True
+    dc: RestartNeeded : No
+    dc: FeatureResult : {Active Directory Domain Services}
+    dc: ExitCode      : Success
+    dc: WARNING: Windows Server 2016 domain controllers have a default for the security setting named 
+    dc: "Allow cryptography algorithms compatible with Windows NT 4.0" that prevents weaker cryptography 
+    dc: algorithms when establishing security channel sessions.
+    dc: For more information about this setting, see Knowledge Base article 942564 
+    dc: (http://go.microsoft.com/fwlink/?LinkId=104751).
+    dc: WARNING: This computer has at least one physical network adapter that does not have static IP 
+    dc: address(es) assigned to its IP Properties. If both IPv4 and IPv6 are enabled for a network 
+    dc: adapter, both IPv4 and IPv6 static IP addresses should be assigned to both IPv4 and IPv6 
+    dc: Properties of the physical network adapter. Such static IP address(es) assignment should be done 
+    dc: to all the physical network adapters for reliable Domain Name System (DNS) operation.
+    dc: WARNING: A delegation for this DNS server cannot be created because the authoritative parent zone 
+    dc: cannot be found or it does not run Windows DNS server. If you are integrating with an existing DNS
+    dc:  infrastructure, you should manually create a delegation to this DNS server in the parent zone to 
+    dc: ensure reliable name resolution from outside the domain "windomain.local". Otherwise, no action is
+    dc:  required.
+    dc: WARNING: Windows Server 2016 domain controllers have a default for the security setting named 
+    dc: "Allow cryptography algorithms compatible with Windows NT 4.0" that prevents weaker cryptography 
+    dc: algorithms when establishing security channel sessions.
+    dc: For more information about this setting, see Knowledge Base article 942564 
+    dc: (http://go.microsoft.com/fwlink/?LinkId=104751).
+    dc: WARNING: This computer has at least one physical network adapter that does not have static IP 
+    dc: address(es) assigned to its IP Properties. If both IPv4 and IPv6 are enabled for a network 
+    dc: adapter, both IPv4 and IPv6 static IP addresses should be assigned to both IPv4 and IPv6 
+    dc: Properties of the physical network adapter. Such static IP address(es) assignment should be done 
+    dc: to all the physical network adapters for reliable Domain Name System (DNS) operation.
+    dc: WARNING: A delegation for this DNS server cannot be created because the authoritative parent zone 
+    dc: cannot be found or it does not run Windows DNS server. If you are integrating with an existing DNS
+    dc:  infrastructure, you should manually create a delegation to this DNS server in the parent zone to 
+    dc: ensure reliable name resolution from outside the domain "windomain.local". Otherwise, no action is
+    dc:  required.
+    dc: Message        : You must restart this computer to complete the operation.
+    dc:                  
+    dc: Context        : DCPromo.General.2
+    dc: RebootRequired : True
+    dc: Status         : Success
+    dc: [07:12] Setting DNS
+    dc: __GENUS          : 2
+    dc: __CLASS          : __PARAMETERS
+    dc: __SUPERCLASS     : 
+    dc: __DYNASTY        : __PARAMETERS
+    dc: __RELPATH        : 
+    dc: __PROPERTY_COUNT : 1
+    dc: __DERIVATION     : {}
+    dc: __SERVER         : 
+    dc: __NAMESPACE      : 
+    dc: __PATH           : 
+    dc: ReturnValue      : 0
+    dc: PSComputerName   : 
+    dc: [07:12] Setting timezone to UTC
+    dc: [07:12] Excluding NAT interface from DNS
+    dc: ListenAddresses reset successful.
+    dc: Command completed successfully.
+    dc: Hint: vagrant reload dc --provision
+==> dc: Running provisioner: reload...
+==> dc: Attempting graceful shutdown of VM...
+==> dc: Checking if box 'detectionlab/win2016' version '1.4' is up to date...
+==> dc: Clearing any previously set forwarded ports...
+==> dc: Clearing any previously set network interfaces...
+==> dc: Preparing network interfaces based on configuration...
+    dc: Adapter 1: nat
+    dc: Adapter 2: hostonly
+==> dc: Forwarding ports...
+    dc: 5985 (guest) => 55985 (host) (adapter 1)
+    dc: 5986 (guest) => 55986 (host) (adapter 1)
+    dc: 22 (guest) => 2201 (host) (adapter 1)
+==> dc: Running 'pre-boot' VM customizations...
+==> dc: Booting VM...
+==> dc: Waiting for machine to boot. This may take a few minutes...
+    dc: WinRM address: 127.0.0.1:55985
+    dc: WinRM username: vagrant
+    dc: WinRM execution_time_limit: PT2H
+    dc: WinRM transport: plaintext
+==> dc: Machine booted and ready!
+==> dc: Checking for guest additions in VM...
+    dc: The guest additions on this VM do not match the installed version of
+    dc: VirtualBox! In most cases this is fine, but in rare cases it can
+    dc: prevent things such as shared folders from working properly. If you see
+    dc: shared folder errors, please make sure the guest additions within the
+    dc: virtual machine match the version of VirtualBox you have installed on
+    dc: your host and reload your VM.
+    dc: 
+    dc: Guest Additions Version: 6.0.10
+    dc: VirtualBox Version: 5.2
+==> dc: Setting hostname...
+==> dc: Configuring and enabling network interfaces...
+==> dc: Mounting shared folders...
+    dc: /vagrant => /Users/rob/dev/DetectionLab/Vagrant
+==> dc: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> dc: flag to force provisioning. Provisioners marked to run always will still run.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/provision.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:14] Setting timezone to UTC...
+    dc: [15:14] Disable IPv6 on all network adatpers...
+    dc: Name                           DisplayName                                        ComponentID     
+    dc: ----                           -----------                                        -----------     
+    dc: Ethernet 2                     Internet Protocol Version 6 (TCP/IPv6)             ms_tcpip6       
+    dc: Ethernet 3                     Internet Protocol Version 6 (TCP/IPv6)             ms_tcpip6       
+    dc: The operation completed successfully.
+    dc: [15:14] I am domain joined!
+    dc: [15:14] Provisioning after joining domain...
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/download_palantir_wef.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:14] Downloading and unzipping the Palantir Windows Event Forwarding Repo from Github...
+    dc: [15:14] Palantir WEF download complete!
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/download_palantir_osquery.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:14] Downloading and unzipping the Palantir osquery Repo from Github...
+    dc: [15:14] Palantir osquery config download complete!
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-utilities.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: Installing Chocolatey
+    dc: Getting latest version of the Chocolatey package for download.
+    dc: Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.
+    dc: Downloading 7-Zip commandline tool prior to extraction.
+    dc: Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall...
+    dc: Installing chocolatey on this machine
+    dc: Creating ChocolateyInstall as an environment variable (targeting 'Machine') 
+    dc:   Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+    dc: WARNING: It's very likely you will need to close and reopen your shell 
+    dc:   before you can use choco.
+    dc: Restricting write permissions to Administrators
+    dc: We are setting up the Chocolatey package repository.
+    dc: The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+    dc:   (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+    dc: A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+    dc:   and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+    dc: Creating Chocolatey folders if they do not already exist.
+    dc: WARNING: You can safely ignore errors related to missing log files when 
+    dc:   upgrading from a version of Chocolatey less than 0.9.9. 
+    dc:   'Batch file could not be found' is also safe to ignore. 
+    dc:   'The system cannot find the file specified' - also safe.
+    dc: chocolatey.nupkg file not installed in lib.
+    dc:  Attempting to locate it from bootstrapper.
+    dc: PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+    dc: WARNING: Not setting tab completion: Profile file does not exist at 
+    dc: 'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+    dc: Chocolatey (choco.exe) is now ready.
+    dc: You can call choco from anywhere, command line or powershell by typing choco.
+    dc: Run choco /? for a list of functions.
+    dc: You may need to shut down and restart powershell and/or consoles
+    dc:  first prior to using choco.
+    dc: Ensuring chocolatey commands are on the path
+    dc: Ensuring chocolatey.nupkg is in the lib folder
+    dc: [15:14] Installing utilities...
+    dc: Installing the following packages:
+    dc: NotepadPlusPlus
+    dc: By installing you accept licenses for the packages.
+    dc: Error retrieving packages from source 'https://chocolatey.org/api/v2/':
+    dc:  Could not connect to the feed specified at 'https://chocolatey.org/api/v2/'. Please verify that the package source (located in the Package Manager Settings) is valid and ensure your network connectivity.
+    dc: NotepadPlusPlus not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Chocolatey installed 0/1 packages. 1 packages failed.
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Failures
+    dc:  - NotepadPlusPlus - NotepadPlusPlus not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Installing the following packages:
+    dc: GoogleChrome
+    dc: By installing you accept licenses for the packages.
+    dc: [NuGet] Could not connect to the feed specified at 'https://chocolatey.org/api/v2/'. Please verify that the package source (located in the Package Manager Settings) is valid and ensure your network connectivity.
+    dc: GoogleChrome not installed. An error occurred during installation:
+    dc:  Unable to resolve dependency 'chocolatey-core.extension (ò 1.3.3)'.
+    dc: GoogleChrome package files install completed. Performing other installation steps.
+    dc: The install of GoogleChrome was NOT successful.
+    dc: GoogleChrome not installed. An error occurred during installation:
+    dc:  Unable to resolve dependency 'chocolatey-core.extension (ò 1.3.3)'.
+    dc: Chocolatey installed 0/1 packages. 1 packages failed.
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Failures
+    dc:  - GoogleChrome (exited 1) - GoogleChrome not installed. An error occurred during installation:
+    dc:  Unable to resolve dependency 'chocolatey-core.extension (ò 1.3.3)'.
+    dc: Installing the following packages:
+    dc: WinRar
+    dc: By installing you accept licenses for the packages.
+    dc: Error retrieving packages from source 'https://chocolatey.org/api/v2/':
+    dc:  Could not connect to the feed specified at 'https://chocolatey.org/api/v2/'. Please verify that the package source (located in the Package Manager Settings) is valid and ensure your network connectivity.
+    dc: WinRar not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Chocolatey installed 0/1 packages. 1 packages failed.
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Failures
+    dc:  - WinRar - WinRar not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Utilties installation complete!
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-redteam.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:19] Installing Red Team Tooling...
+    dc: [15:19] Determining latest release of Mimikatz...
+    dc: [15:19] Downloading Powersploit...
+    dc: [15:20] Downloading Atomic Red Team...
+    dc: [15:22] Red Team tooling installation complete!
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-choco-extras.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:22] Installing additional Choco packages...
+    dc: Chocolatey is already installed.
+    dc: Installing Chocolatey extras...
+    dc: Installing the following packages:
+    dc: wireshark
+    dc: By installing you accept licenses for the packages.
+    dc: Error retrieving packages from source 'https://chocolatey.org/api/v2/':
+    dc:  Could not connect to the feed specified at 'https://chocolatey.org/api/v2/'. Please verify that the package source (located in the Package Manager Settings) is valid and ensure your network connectivity.
+    dc: wireshark not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Chocolatey installed 0/1 packages. 1 packages failed.
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Failures
+    dc:  - wireshark - wireshark not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Installing the following packages:
+    dc: winpcap
+    dc: By installing you accept licenses for the packages.
+    dc: Error retrieving packages from source 'https://chocolatey.org/api/v2/':
+    dc:  Could not connect to the feed specified at 'https://chocolatey.org/api/v2/'. Please verify that the package source (located in the Package Manager Settings) is valid and ensure your network connectivity.
+    dc: winpcap not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: Chocolatey installed 0/1 packages. 1 packages failed.
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Failures
+    dc:  - winpcap - winpcap not installed. The package was not found with the source(s) listed.
+    dc:  Source(s): 'https://chocolatey.org/api/v2/'
+    dc:  NOTE: When you specify explicit sources, it overrides default sources.
+    dc: If the package version is a prerelease and you didn't specify `--pre`,
+    dc:  the package may not be found.
+    dc: Please see https://chocolatey.org/docs/troubleshooting for more 
+    dc:  assistance.
+    dc: [15:25] Choco addons complete!
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-osquery.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:25] Installing osquery...
+    dc: Installing the following packages:
+    dc: osquery
+    dc: By installing you accept licenses for the packages.
+    dc: osquery v4.0.2 [Approved]
+    dc: osquery package files install completed. Performing other installation steps.
+    dc: C:\Program Files\osquery\osqueryd
+    dc: C:\Program Files\osquery\log
+    dc: Extracting C:\ProgramData\chocolatey\lib\osquery\tools\\bin\\osquery.zip to C:\Program Files\osquery...
+    dc: C:\Program Files\osquery
+    dc: True
+    dc: Environment Vars (like PATH) have changed. Close/reopen your shell to
+    dc:  see the changes (or in powershell/cmd.exe just type `refreshenv`).
+    dc:  The install of osquery was successful.
+    dc:   Software installed to 'C:\Program Files\osquery'
+    dc: Chocolatey installed 1/1 packages. 
+    dc:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    dc: Setting osquery to run as a service
+    dc: Status   Name               DisplayName                           
+    dc: ------   ----               -----------                           
+    dc: Stopped  osqueryd           osqueryd                              
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-sysinternals.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:26] Installing SysInternals Tooling...
+    dc:     Directory: C:\Tools
+    dc: Mode                LastWriteTime         Length Name                                             
+    dc: ----                -------------         ------ ----                                             
+    dc: d-----       12/16/2019   3:26 PM                Sysinternals                                     
+    dc:     Directory: C:\ProgramData
+    dc: Mode                LastWriteTime         Length Name                                             
+    dc: ----                -------------         ------ ----                                             
+    dc: d-----       12/16/2019   3:26 PM                Sysmon                                           
+    dc: [15:26] Downloading Autoruns64.exe...
+    dc: [15:26] Downloading Procmon.exe...
+    dc: [15:26] Downloading PsExec64.exe...
+    dc: [15:26] Downloading procexp64.exe...
+    dc: [15:26] Downloading Sysmon64.exe...
+    dc: [15:26] Downloading Tcpview.exe...
+    dc: [15:26] Downloading Olaf Hartong's Sysmon config...
+    dc: [15:26] Starting Sysmon...
+    dc: [15:26] Verifying that the Sysmon service is running...
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-ou.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:26] Checking AD services status...
+    dc: Pinging dc.windomain.local [192.168.38.102] with 32 bytes of data:
+    dc: Reply from 192.168.38.102: bytes=32 time<1ms TTL=128
+    dc: Ping statistics for 192.168.38.102:
+    dc:     Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+    dc: Approximate round trip times in milli-seconds:
+    dc:     Minimum = 0ms, Maximum = 0ms, Average = 0ms
+    dc: Pinging windomain.local [192.168.38.102] with 32 bytes of data:
+    dc: Reply from 192.168.38.102: bytes=32 time<1ms TTL=128
+    dc: Ping statistics for 192.168.38.102:
+    dc:     Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+    dc: Approximate round trip times in milli-seconds:
+    dc:     Minimum = 0ms, Maximum = 0ms, Average = 0ms
+    dc: [15:26] Creating Server and Workstation OUs...
+    dc: [15:26] Creating Server OU
+    dc: [15:26] Creating Workstations OU
+    dc: MachineName Name      Status
+    dc: ----------- ----      ------
+    dc: localhost   adws     Running
+    dc: localhost   dns      Running
+    dc: localhost   kdc      Running
+    dc: localhost   Netlogon Running
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-wef-gpo.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:26] Importing the GPO to specify the WEF collector
+    dc: DisplayName      : Windows Event Forwarding Server
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : 5703a438-a833-40cf-be55-8239a68d2d22
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:26:23 PM
+    dc: ModificationTime : 12/16/2019 3:26:23 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Windows Event Forwarding Server
+    dc: GpoId         : 5703a438-a833-40cf-be55-8239a68d2d22
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 1
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Windows Event Forwarding Server
+    dc: GpoId         : 5703a438-a833-40cf-be55-8239a68d2d22
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 2
+    dc: Target        : OU=Domain Controllers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Windows Event Forwarding Server
+    dc: GpoId         : 5703a438-a833-40cf-be55-8239a68d2d22
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 1
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: [15:26] Importing the GPO to modify ACLs on Custom Event Channels
+    dc: DisplayName      : Custom Event Channel Permissions
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : b9a3d331-2ab8-46c6-aff7-957a54d2c271
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:26:24 PM
+    dc: ModificationTime : 12/16/2019 3:26:24 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Custom Event Channel Permissions
+    dc: GpoId         : b9a3d331-2ab8-46c6-aff7-957a54d2c271
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 2
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Custom Event Channel Permissions
+    dc: GpoId         : b9a3d331-2ab8-46c6-aff7-957a54d2c271
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 3
+    dc: Target        : OU=Domain Controllers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Custom Event Channel Permissions
+    dc: GpoId         : b9a3d331-2ab8-46c6-aff7-957a54d2c271
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 2
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: Updating policy...
+    dc: Computer Policy update has completed successfully.
+    dc: User Policy update has completed successfully.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-powershelllogging.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:26] Importing the GPO to enable Powershell Module, ScriptBlock and Transcript logging...
+    dc: DisplayName      : Powershell Logging
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : c9e0b414-3e85-403e-8a2b-63985ff196ac
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:26:41 PM
+    dc: ModificationTime : 12/16/2019 3:26:41 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Powershell Logging
+    dc: GpoId         : c9e0b414-3e85-403e-8a2b-63985ff196ac
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 3
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Powershell Logging
+    dc: GpoId         : c9e0b414-3e85-403e-8a2b-63985ff196ac
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 3
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Powershell Logging
+    dc: GpoId         : c9e0b414-3e85-403e-8a2b-63985ff196ac
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 4
+    dc: Target        : OU=Domain Controllers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: Updating policy...
+    dc: Computer Policy update has completed successfully.
+    dc: User Policy update has completed successfully.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-AuditingPolicyGPOs.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:26] Configuring auditing policy GPOs...
+    dc: Importing Domain Controllers Enhanced Auditing Policy...
+    dc: DisplayName      : Domain Controllers Enhanced Auditing Policy
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : 2eb379f6-654f-482b-8e74-17fc567b4e32
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:26:58 PM
+    dc: ModificationTime : 12/16/2019 3:26:59 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Domain Controllers Enhanced Auditing Policy
+    dc: GpoId         : 2eb379f6-654f-482b-8e74-17fc567b4e32
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 5
+    dc: Target        : OU=Domain Controllers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: [15:26] Importing Servers Enhanced Auditing Policy...
+    dc: DisplayName      : Servers Enhanced Auditing Policy
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : a20939bc-aa60-433c-8d19-5761620b03df
+    dc: GpoStatus        : UserSettingsDisabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:26:59 PM
+    dc: ModificationTime : 12/16/2019 3:27:00 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Servers Enhanced Auditing Policy
+    dc: GpoId         : a20939bc-aa60-433c-8d19-5761620b03df
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 4
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: [15:27] Importing Workstations Enhanced Auditing Policy...
+    dc: DisplayName      : Workstations Enhanced Auditing Policy
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : 35f2b1bc-fb99-4ac1-9d81-5d99d1e0e3aa
+    dc: GpoStatus        : UserSettingsDisabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:27:00 PM
+    dc: ModificationTime : 12/16/2019 3:27:00 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Workstations Enhanced Auditing Policy
+    dc: GpoId         : 35f2b1bc-fb99-4ac1-9d81-5d99d1e0e3aa
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 4
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-rdp-user-gpo.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:27] Importing the GPO to allow windomain/vagrant to RDP...
+    dc: DisplayName      : Allow Domain Users RDP
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : 67e30a28-d793-490a-a22c-5432bddc3080
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:27:06 PM
+    dc: ModificationTime : 12/16/2019 3:27:07 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Allow Domain Users RDP
+    dc: GpoId         : 67e30a28-d793-490a-a22c-5432bddc3080
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 5
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Allow Domain Users RDP
+    dc: GpoId         : 67e30a28-d793-490a-a22c-5432bddc3080
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 5
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: Updating policy...
+    dc: Computer Policy update has completed successfully.
+    dc: User Policy update has completed successfully.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/configure-disable-windows-defender-gpo.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:27] Importing the GPO to disable Windows Defender...
+    dc: DisplayName      : Disable Windows Defender
+    dc: DomainName       : windomain.local
+    dc: Owner            : WINDOMAIN\vagrant
+    dc: Id               : 367354c4-d518-44d2-9c00-88c3bdcb0295
+    dc: GpoStatus        : AllSettingsEnabled
+    dc: Description      : 
+    dc: CreationTime     : 12/16/2019 3:27:24 PM
+    dc: ModificationTime : 12/16/2019 3:27:25 PM
+    dc: UserVersion      : AD Version: 1, SysVol Version: 1
+    dc: ComputerVersion  : AD Version: 1, SysVol Version: 1
+    dc: WmiFilter        : 
+    dc: DisplayName   : Disable Windows Defender
+    dc: GpoId         : 367354c4-d518-44d2-9c00-88c3bdcb0295
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 6
+    dc: Target        : OU=Workstations,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: DisplayName   : Disable Windows Defender
+    dc: GpoId         : 367354c4-d518-44d2-9c00-88c3bdcb0295
+    dc: Enabled       : True
+    dc: Enforced      : True
+    dc: Order         : 6
+    dc: Target        : OU=Servers,DC=windomain,DC=local
+    dc: GpoDomainName : windomain.local
+    dc: Updating policy...
+    dc: Computer Policy update has completed successfully.
+    dc: User Policy update has completed successfully.
+==> dc: Running provisioner: shell...
+    dc: Running: scripts/install-autorunstowineventlog.ps1 as c:\tmp\vagrant-shell.ps1
+    dc: [15:27] Installing AutorunsToWinEventLog...
+    dc:     Directory: C:\Program Files
+    dc: Mode                LastWriteTime         Length Name                                             
+    dc: ----                -------------         ------ ----                                             
+    dc: d-----       12/16/2019   3:27 PM                AutorunsToWinEventLog                            
+    dc: Actions            : {MSFT_TaskExecAction}
+    dc: Author             : 
+    dc: Date               : 
+    dc: Description        : 
+    dc: Documentation      : 
+    dc: Principal          : MSFT_TaskPrincipal2
+    dc: SecurityDescriptor : 
+    dc: Settings           : MSFT_TaskSettings3
+    dc: Source             : 
+    dc: State              : Ready
+    dc: TaskName           : AutorunsToWinEventLog
+    dc: TaskPath           : \
+    dc: Triggers           : {MSFT_TaskDailyTrigger}
+    dc: URI                : \AutorunsToWinEventLog
+    dc: Version            : 
+    dc: PSComputerName     : 
+    dc: Actions            : {MSFT_TaskExecAction}
+    dc: Author             : 
+    dc: Date               : 
+    dc: Description        : 
+    dc: Documentation      : 
+    dc: Principal          : MSFT_TaskPrincipal2
+    dc: SecurityDescriptor : 
+    dc: Settings           : MSFT_TaskSettings3
+    dc: Source             : 
+    dc: State              : Ready
+    dc: TaskName           : AutorunsToWinEventLog
+    dc: TaskPath           : \
+    dc: Triggers           : {MSFT_TaskDailyTrigger}
+    dc: URI                : \AutorunsToWinEventLog
+    dc: Version            : 
+    dc: PSComputerName     : 
+    dc: AutorunsToWinEventLog installed. Starting the scheduled task. Future runs will begin at 11am
+==> dc: Running provisioner: shell...
+    dc: Running: inline PowerShell script
+==> dc: Running provisioner: shell...
+    dc: Running: inline PowerShell script
