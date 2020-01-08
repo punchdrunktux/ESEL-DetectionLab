@@ -1,5 +1,5 @@
 
-## Purpose
+## Overview
 The ESEL lab is essentially a hard-fork from DetectionLab (https://github.com/clong/DetectionLab) with additional VM's and tooling to be used for D3 purposes.
 
 NOTE: This lab has not been hardened in any way and runs with default vagrant credentials. Please do not connect or bridge it to any networks you care about. 
