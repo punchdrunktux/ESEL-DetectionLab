@@ -12,7 +12,7 @@ apt_update() {
 
 install_basics() {
     echo "[$(date +%H:%M:%S)]: Installing base software packages..."
-    apt-get install -y unzip whois jq build-essential unzip python3 python3-pip dos2unix
+    apt-get install -y unzip whois jq build-essential python3 python3-pip dos2unix
 }
 
 install_covenant(){

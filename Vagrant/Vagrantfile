@@ -38,8 +38,10 @@ Vagrant.configure("2") do |config|
       cfg.vm.provision :shell, path: "scripts/bootstrap_ct.sh"
       cfg.vm.provision "file", source: "~/dev/ESEL-DetectionLab/Vagrant/resources/ControlTower", destination: "/tmp/"
       cfg.vm.provision "shell", inline: "sudo mv /tmp/ControlTower /opt/; dos2unix -q /opt/ControlTower/*; chmod +x /opt/ControlTower/*.sh"
+      #replace the SSH configuration to allow SSH
+      cfg.vm.provision "shell", inline: "sudo cp /opt/ControlTower/sshd_config /etc/ssh/sshd_config; sudo systemctl restart ssh"
       #put covenant data file back.
-      cfg.vm.provision "shell", inline: "cd /opt/Covenant/Covenant/Data; unzip covenant-data.zip; sudo tar xpf /opt/ControlTower/covenant-data.tar ."
+      cfg.vm.provision "shell", inline: "cd /opt/ControlTower; unzip covenant-data.zip; cd /opt/Covenant/Covenant/Data; sudo tar xpf /opt/ControlTower/covenant-data.tar ."
       #cfg.vm.provision "reload"
       #cfg.vm.provision :shell, path: "scripts/ct_checkservices.sh"
 
