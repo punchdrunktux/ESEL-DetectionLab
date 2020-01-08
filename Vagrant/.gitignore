@@ -1,6 +1,3 @@
 .vagrant
 .DS_Store
-vagrant_up_ControlTower
-vagrant_up_dc
-vagrant_up_wef
-vagrant_up_logger
+vagrant_up_*
