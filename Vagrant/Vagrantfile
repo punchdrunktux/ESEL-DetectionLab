@@ -28,20 +28,20 @@ Vagrant.configure("2") do |config|
 
 
     config.vm.define "ControlTower" do |cfg|
-      cfg.vm.synced_folder "~/dev/ESEL/SharedFiles", "/SharedFiles"
+    #  cfg.vm.synced_folder "~/dev/ESEL/SharedFiles", "/SharedFiles"
       cfg.vm.box = "ubuntu/bionic64"
       cfg.vm.hostname = "ControlTower"
       cfg.vm.network :private_network, ip: "192.168.38.10", gateway: "192.168.38.1", dns: "1.1.1.1"
       #cfg.vm.provision :shell, path: "scripts/fixeth.sh"
       #cfg.vm.provision "reload"
-      cfg.vm.provision "file", source: "~/dev/ESEL/resources/ControlTower", destination: "/tmp/"
-      cfg.vm.provision "shell", inline: "sudo mv /tmp/ControlTower /opt/; dos2unix /opt/ControlTower/*; chmod +x /opt/ControlTower/*.sh"
-
+      #run the main provisioning for ControlTower
       cfg.vm.provision :shell, path: "scripts/bootstrap_ct.sh"
+      cfg.vm.provision "file", source: "~/dev/ESEL-DetectionLab/Vagrant/resources/ControlTower", destination: "/tmp/"
+      cfg.vm.provision "shell", inline: "sudo mv /tmp/ControlTower /opt/; dos2unix /opt/ControlTower/*; chmod +x /opt/ControlTower/*.sh"
+      #put covenant data file back.
+      cfg.vm.provision "shell", inline: "cd /opt/Covenant/Covenant/Data; sudo tar xpf /opt/ControlTower/covenant-data.tar ."
       #cfg.vm.provision "reload"
-      cfg.vm.provision :shell, path: "scripts/ct_checkservices.sh"
-
-
+      #cfg.vm.provision :shell, path: "scripts/ct_checkservices.sh"
 
       cfg.vm.provider "virtualbox" do |vb, override|
         vb.gui = true

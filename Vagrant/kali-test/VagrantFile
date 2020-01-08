@@ -1,0 +1,66 @@
+Vagrant.configure("2") do |config|
+
+
+  config.vm.define "kali" do |cfg|
+
+  #  cfg.vm.synced_folder "~/dev/ESEL/SharedFiles", "/SharedFiles"
+    cfg.vm.box = "kalilinux/rolling"
+    config.vm.box_version = "2019.3.0"
+    cfg.vm.hostname = "kali"
+#    cfg.vm.provision :shell, path: "scripts/bootstrap_kali.sh"
+    cfg.vm.network :private_network, ip: "192.168.38.15", gateway: "192.168.38.1", dns: "1.1.1.1"
+    cfg.vm.network :public_network, ip: "10.0.1.114"
+    cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "kali"
+      vb.customize ["modifyvm", :id, "--memory", 4096]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+
+    cfg.vm.provider "vmware_desktop" do |v, override|
+      v.name = "Kali"
+      v.vmx["displayname"] = "kali"
+      v.memory = 4096
+      v.cpus = 1
+      v.gui = true
+    end
+end
+
+
+  config.vm.define "blackarch" do |cfg|
+
+  #  cfg.vm.synced_folder "~/dev/ESEL/SharedFiles", "/SharedFiles"
+    cfg.vm.box = "ph20/blackarch-core-x86_64"
+    cfg.vm.hostname = "blackarch"
+  #  cfg.vm.provision :shell, path: "scripts/bootstrap_kali.sh"
+    cfg.vm.network :private_network, ip: "192.168.38.15", gateway: "192.168.38.1", dns: "1.1.1.1"
+#    cfg.vm.provision :shell, inline: "sudo ifconfig eth0 192.168.38.15"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "blackarch"
+      vb.customize ["modifyvm", :id, "--memory", 4096]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+
+    cfg.vm.provider "vmware_desktop" do |v, override|
+      v.name = "blackarch"
+      v.vmx["displayname"] = "blackarch"
+      v.memory = 4096
+      v.cpus = 1
+      v.gui = true
+    end
+end
+end

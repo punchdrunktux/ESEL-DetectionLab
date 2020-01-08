@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "Starting Covenant"
-sudo su -
+echo "Starting Covenant C2 on HTTPS port 7443"
 cd /opt/Covenant/Covenant
-/opt/dotnet/dotnet run
+sudo /opt/dotnet/dotnet run
