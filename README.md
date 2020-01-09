@@ -38,9 +38,23 @@ For now, the best way to instantiate ESEL is by using the Vagrant components.
   * Virtualbox 6.0 https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
     NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
 
-2.
+2. Using vagrant, install the ESEL components. The entire routine is scripted using the build.sh and build.ps1 scripts however there are currently some errors and "smoothing" to the process that needs to be done.  So, for now it is suggested that you manually initiate the build of each component.
 
+cd Vagrant
+a. Install ControlTower
+vagrant up ControlTower
 
+b. Install the logger
+vagrant up logger
+
+c. Install the Windows 2016 DC
+vagrant up dc
+
+d. Install the Windows Event Forwarder (WEF) machine
+vagrant up wef
+
+e. Install the Windows 10 user machine
+vagrant up win10
 ---
 
 ## Building DetectionLab from Scratch
