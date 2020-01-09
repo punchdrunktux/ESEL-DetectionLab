@@ -31,39 +31,35 @@ NOTE: This lab has not been hardened in any way and runs with default vagrant cr
 
 ## Installing ESEL Components
 
-For now, the best way to instantiate ESEL is by using the Vagrant components.
+For now, the best way to instantiate ESEL is by using the Vagrant components.  The machine build process is scripted via build.sh and build.ps1, however there is some more "smoothing" required.  It is suggested for now to manually initiate the build of each component.
 
 1. Install the Virtualbox and Vagrant, if not already installed.  
   * Vagrant https://www.vagrantup.com/
   * Virtualbox 6.0 https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
     NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
 
-2. Using vagrant, install the ESEL components. The entire routine is scripted using the build.sh and build.ps1 scripts however there are currently some errors and "smoothing" to the process that needs to be done.  So, for now it is suggested that you manually initiate the build of each component.
-
-`cd Vagrant`
-
-**Install ControlTower**
-```
+2. **Install ControlTower**
+- From the Vagrant directory
+ ```
 vagrant up ControlTower
 ```
 
-
-**Install the logger**
+3. **Install the logger**
 ```
 vagrant up logger`
 ```
 
-**Install the Windows 2016 DC**
+4. **Install the Windows 2016 DC**
 ```
 vagrant up dc
 ```
 
-d. Install the Windows Event Forwarder (WEF) machine
+5. Install the Windows Event Forwarder (WEF) machine
 ```
 vagrant up wef
 ```
 
-e. Install the Windows 10 user machine
+6. Install the Windows 10 user machine
 ```
 vagrant up win10
 ```
