@@ -39,60 +39,36 @@ For now, the best way to instantiate ESEL is by using the Vagrant components.
     NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
 
 2. Using vagrant, install the ESEL components. The entire routine is scripted using the build.sh and build.ps1 scripts however there are currently some errors and "smoothing" to the process that needs to be done.  So, for now it is suggested that you manually initiate the build of each component.
+```
 
 cd Vagrant
+```
+
 a. Install ControlTower
+```
 vagrant up ControlTower
+```
 
 b. Install the logger
+```
 vagrant up logger
+```
 
 c. Install the Windows 2016 DC
+```
 vagrant up dc
+```
 
 d. Install the Windows Event Forwarder (WEF) machine
+```
 vagrant up wef
+```
 
 e. Install the Windows 10 user machine
+```
 vagrant up win10
+```
 ---
-
-## Building DetectionLab from Scratch
-1. Determine which Vagrant provider you want to use. Current supported providers are:
-
-  - Virtualbox
-  - VMware Workstation & Fusion
-    - Note: Virtualbox is free, the [VMWare Desktop Vagrant plugin](https://www.vagrantup.com/vmware/#buy-now) is $80 and is required to use Vagrant with VMware.
-
-There are currently three ways to build the lab:
-* **Recommended**: Use the boxes hosted on [Vagrant Cloud](https://app.vagrantup.com/detectionlab). This method should take **~2 hours** total to download the boxes and provision the lab.
-* Build the boxes yourself using Packer. This method will take ~4 hours to build the boxes and another ~90-120 minutes to provision them for a total of **5-6 hours**.
-* [Provision the lab in AWS using Terraform](Terraform/README.md). The lab can be brought online in under **30 minutes**.
-
-If you choose to use the boxes hosted on Vagrant Cloud, you may skip steps 2 and 3. If you don't trust pre-built boxes, I recommend following steps 2 and 3 to build them on your machine.
-
-
-2. `cd` to the Packer directory and build the Windows 10 and Windows Server 2016 boxes using the commands below. Each build will take about 1 hour. As far as I know, you can only build one box at a time.
-
-```
-$ cd detectionlab/Packer
-$ packer build --only=[vmware|virtualbox]-iso windows_10.json
-$ packer build --only=[vmware|virtualbox]-iso windows_2016.json
-```
-
-3. Once both boxes have built successfully, move the resulting boxes (.box files) in the Packer folder to the Boxes folder:
-
-    `mv *.box ../Boxes`
-
-4. `cd` into the Vagrant directory: `cd ../Vagrant` and edit the `Vagrantfile`. Change the lines `cfg.vm.box = "detectionlab/win2016"` and `cfg.vm.box = "detectionlab/win10` to `cfg.vm.box = "../Boxes/windows_2016_<provider>.box"` and "`cfg.vm.box = "../Boxes/windows_10_<provider>.box"` respectively.
-
-5. Install the Vagrant-Reload plugin: `vagrant plugin install vagrant-reload`
-
-6. **VMware Only:**  
-  * [Buy a license](https://www.vagrantup.com/vmware/index.html#buy-now) for the VMware plugin
-  * Install it with `vagrant plugin install vagrant-vmware-desktop`.
-  * License it with `vagrant plugin license vagrant-vmware-desktop <path_to_.lic>`.
-  * Download and install the VMware Vagrant utility: https://www.vagrantup.com/vmware/downloads.html
 
 7. Ensure you are in the base DetectionLab folder and run `./build.sh` (Mac & Linux) or `./build.ps1` (Windows). This script will do the following:
   * Provision the logger host. This host will run the [Fleet](https://kolide.co/fleet) osquery manager and a fully featured pre-configured Splunk instance.
