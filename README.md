@@ -39,20 +39,14 @@ For now, the best way to instantiate ESEL is by using the Vagrant components.
     NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
 
 2. Using vagrant, install the ESEL components. The entire routine is scripted using the build.sh and build.ps1 scripts however there are currently some errors and "smoothing" to the process that needs to be done.  So, for now it is suggested that you manually initiate the build of each component.
-```
 
-cd Vagrant
-```
+`cd Vagrant`
 
-a. Install ControlTower
-```
-vagrant up ControlTower
-```
+*Install ControlTower*
+`vagrant up ControlTower`
 
-b. Install the logger
-```
-vagrant up logger
-```
+*Install the logger*
+`vagrant up logger`
 
 c. Install the Windows 2016 DC
 ```
