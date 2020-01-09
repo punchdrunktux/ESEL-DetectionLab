@@ -42,13 +42,18 @@ For now, the best way to instantiate ESEL is by using the Vagrant components.
 
 `cd Vagrant`
 
-**Install ControlTower**\n
-`vagrant up ControlTower`
+**Install ControlTower**
+```
+vagrant up ControlTower
+```
 
-*Install the logger*
-- `vagrant up logger`
 
-c. Install the Windows 2016 DC
+**Install the logger**
+```
+vagrant up logger`
+```
+
+**Install the Windows 2016 DC**
 ```
 vagrant up dc
 ```
