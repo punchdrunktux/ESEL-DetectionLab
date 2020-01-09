@@ -94,9 +94,14 @@ enable_sshd(){
   sudo systemctl restart sshd
 
 }
+hostname(){
+  echo -e "\n127.0.0.1       controltower" >> /etc/hosts
 
+}
+}
 main() {
   #fix_eth1_static_ip
+#  hostname
   goto_root
   apt_update
   enable_sshd

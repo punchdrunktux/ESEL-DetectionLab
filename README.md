@@ -1,10 +1,17 @@
 
 ## Overview
-The ESEL lab is essentially a hard-fork from DetectionLab (https://github.com/clong/DetectionLab) with additional VM's and tooling to be used for D3 purposes.
+The ESEL build is essentially a hard-fork from DetectionLab (https://github.com/clong/DetectionLab) with tweaks, additional VM's and tooling to be used for D3 purposes.
 
-NOTE: This lab has not been hardened in any way and runs with default vagrant credentials. Please do not connect or bridge it to any networks you care about. 
+At this time, ESEL only works with virtualbox.  It's possible to adapt the environment for VMWare, AWS or AZure but hasn't been done due to time limitations.   This extensibility is possible once all the components are stable.
 
-## Primary Lab Features:
+NOTE: This lab has not been hardened in any way and runs with default vagrant credentials. Please do not connect or bridge it to any networks you care about.
+
+## D3 ESEL Features & Components:
+* Covenant C2 Server deployed and preconfigured
+* Caldera Adversary Simulation Server deployed and preconfigured
+* Windows 10 deployed with Caldera and Covenant agents preconfigured and Running
+
+## Detection Lab Features & Components:
 * Microsoft Advanced Threat Analytics (https://www.microsoft.com/en-us/cloud-platform/advanced-threat-analytics) is installed on the WEF machine, with the lightweight ATA gateway installed on the DC
 * Splunk forwarders are pre-installed and all indexes are pre-created. Technology add-ons for Windows are also preconfigured.
 * A custom Windows auditing configuration is set via GPO to include command line process auditing and additional OS-level logging
@@ -15,21 +22,24 @@ NOTE: This lab has not been hardened in any way and runs with default vagrant cr
 * All autostart items are logged to Windows Event Logs via [AutorunsToWinEventLog](https://github.com/palantir/windows-event-forwarding/tree/master/AutorunsToWinEventLog)
 * SMBv1 Auditing is enabled
 
-
 ## Requirements
 * 55GB+ of free disk space
 * 16GB+ of RAM
-* Packer 1.3.2 or newer
 * Vagrant 2.2.2 or newer
-* Virtualbox or VMWare Fusion/Workstation
+* Virtualbox
 
----
 
-## Quickstart
-* [AWS](https://github.com/clong/DetectionLab/wiki/Quickstart---AWS-(Terraform))
-* [MacOS](https://github.com/clong/DetectionLab/wiki/Quickstart---MacOS)
-* [Windows](https://github.com/clong/DetectionLab/wiki/Quickstart---Windows)
-* [Linux](https://github.com/clong/DetectionLab/wiki/Quickstart-Linux)
+## Installing ESEL Components
+
+For now, the best way to instantiate ESEL is by using the Vagrant components.
+
+1. Install the Virtualbox and Vagrant, if not already installed.  
+* Install Vagrant https://www.vagrantup.com/
+* Install Virtualbox 6.0 https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
+NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
+
+2. 
+
 
 ---
 
@@ -95,42 +105,7 @@ Moved to the wiki: [Lab Information & Credentials](https://github.com/clong/Dete
 
 ---
 
-## Known Issues and Workarounds
+#Troubleshooting
 
-Moved to the wiki: [Known Issues and Workarounds](https://github.com/clong/DetectionLab/wiki/Known-Issues-and-Workarounds)
-
----
-
-## Contributing
-Please do all of your development in a feature branch on your own fork of DetectionLab.
-Contribution guidelines can be found here: [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-## In the Media
-* [DetectionLab, Chris Long – Paul’s Security Weekly #593](https://securityweekly.com/2019/02/08/detectionlab-chris-long-pauls-security-weekly-593/)
-* [TaoSecurity - Trying DetectionLab](https://taosecurity.blogspot.com/2019/01/trying-detectionlab.html)
-* [Setting up Chris Long's DetectionLab](https://www.psattack.com/articles/20171218/setting-up-chris-longs-detectionlab/)
-* [Detection Lab: Visibility & Introspection for Defenders](https://isc.sans.edu/forums/diary/Detection+Lab+Visibility+Introspection+for+Defenders/23135/)
-
-## Credits/Resources
-A sizable percentage of this code was borrowed and adapted from [Stefan Scherer](https://twitter.com/stefscherer)'s [packer-windows](https://github.com/StefanScherer/packer-windows) and [adfs2](https://github.com/StefanScherer/adfs2) Github repos. A huge thanks to him for building the foundation that allowed me to design this lab environment.
-
-# Acknowledgements
-* [Microsoft Advanced Threat Analytics](https://www.microsoft.com/en-us/cloud-platform/advanced-threat-analytics)
-* [Splunk](https://www.splunk.com)
-* [osquery](https://osquery.io)
-* [Fleet](https://kolide.co/fleet)
-* [Windows Event Forwarding for Network Defense](https://medium.com/@palantir/windows-event-forwarding-for-network-defense-cb208d5ff86f)
-* [palantir/windows-event-forwarding](http://github.com/palantir/windows-event-forwarding)
-* [osquery Across the Enterprise](https://medium.com/@palantir/osquery-across-the-enterprise-3c3c9d13ec55)
-* [palantir/osquery-configuration](https://github.com/palantir/osquery-configuration)
-* [Configure Event Log Forwarding in Windows Server 2012 R2](https://www.petri.com/configure-event-log-forwarding-windows-server-2012-r2)
-* [Monitoring what matters — Windows Event Forwarding for everyone](https://blogs.technet.microsoft.com/jepayne/2015/11/23/monitoring-what-matters-windows-event-forwarding-for-everyone-even-if-you-already-have-a-siem/)
-* [Use Windows Event Forwarding to help with intrusion detection](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/use-windows-event-forwarding-to-assist-in-instrusion-detection)
-* [The Windows Event Forwarding Survival Guide](https://hackernoon.com/the-windows-event-forwarding-survival-guide-2010db7a68c4)
-* [PowerShell ♥ the Blue Team](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/)
-* [Autoruns](https://www.microsoftpressstore.com/articles/article.aspx?p=2762082)
-* [TA-microsoft-sysmon](https://github.com/splunk/TA-microsoft-sysmon)
-* [SwiftOnSecurity - Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config)
-* [ThreatHunting](https://github.com/olafhartong/ThreatHunting)
-* [sysmon-modular](https://github.com/olafhartong/sysmon-modular)
-* [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
+1. Using ESXi as the provier, I get the error "An active machine was found with a different provider."
+Unfortunately, this is a limitation of vagrant where you control the provisioning of a single image with mulitple provisioners (e.g. ESXI and virtualbox).  You'll need to rename/delete the vagrant data in the .vagrant folder.

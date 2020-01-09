@@ -1,11 +1,7 @@
 #! /bin/bash
 
-# This script is meant to be used with a fresh clone of DetectionLab and
-# will fail to run if boxes have already been created or any of the steps
-# from the README have already been run followed.
 # Only MacOS and Linux are supported. Use build.ps1 for Windows.
-# If you encounter issues, feel free to open an issue at
-# https://github.com/clong/DetectionLab/issues
+
 
 print_usage() {
   echo "Usage: ./build.sh <virtualbox | vmware_desktop>  <--vagrant-only | --packer-only>"
@@ -150,11 +146,11 @@ check_boxes_built() {
 check_vagrant_instances_exist() {
   cd "$DL_DIR"/Vagrant/ || exit 1
   # Vagrant status has the potential to return a non-zero error code, so we work around it with "|| true"
-  VAGRANT_BUILT=$(vagrant status | grep -c 'not created') || true
-  if [ "$VAGRANT_BUILT" -ne 4 ]; then
-    (echo >&2 "You appear to have already created at least one Vagrant instance. This script does not support pre-created instances. Please either destroy the existing instances or follow the build steps in the README to continue.")
-    exit 1
-  fi
+#  VAGRANT_BUILT=$(vagrant status | grep -c 'not created') || true
+#  if [ "$VAGRANT_BUILT" -ne 5 ]; then
+#    (echo >&2 "You appear to have already created at least one Vagrant instance. This script does not support pre-created instances. Please either destroy the existing instances or follow the build steps in the README to continue.")
+#    exit 1
+#  fi
 }
 
 check_vagrant_reload_plugin() {
@@ -242,7 +238,11 @@ move_boxes() {
 # Brings up a single host using Vagrant
 vagrant_up_host() {
   HOST="$1"
-  (echo >&2 "Attempting to bring up the $HOST host using Vagrant")
+  echo ""
+  (echo >&2 "***************************************************")
+  (echo >&2 "$HOST: Attempting to bring up the host using Vagrant")
+  (echo >&2 "For details, see log file: vagrant_up_$HOST.log in the Vagrant directory.")
+
   cd "$DL_DIR"/Vagrant || exit 1
   $(which vagrant) up "$HOST" --provider="$PROVIDER" &> "$DL_DIR/Vagrant/vagrant_up_$HOST.log"
   echo "$?"
@@ -371,12 +371,25 @@ fi
 }
 
 build_vagrant_hosts() {
-#  LAB_HOSTS=("logger" "dc" "wef" "win10" "ControlTower")
-  LAB_HOSTS=("ControlTower")
+  LAB_HOSTS=("ControlTower" "logger" "dc" "wef" "win10")
+#  LAB_HOSTS=("ControlTower")
+
+  echo "The following hosts are scheduled to be build:"
+  for HOSTS in ${LAB_HOSTS[@]}
+  do
+    echo "     $HOSTS"
+  done
+  echo -n "Starting in "
+  for ((i=3; i>=1; i--))
+  do
+    echo -n "$i.."
+    sleep 1
+  done
+
 
   # Vagrant up each box and attempt to reload one time if it fails
   for VAGRANT_HOST in "${LAB_HOSTS[@]}"; do
-    RET=$(vagrant_up_host "$VAGRANT_HOST")
+    RET=$(vagrant_up_host "$VAGRANT_HOST" "1")
     if [ "$RET" -eq 0 ]; then
       (echo >&2 "Good news! $VAGRANT_HOST was built successfully!")
     fi
@@ -392,6 +405,7 @@ build_vagrant_hosts() {
         exit 1
       fi
     fi
+  (echo >&2 "***************************************************")
   done
 }
 
