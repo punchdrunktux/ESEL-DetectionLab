@@ -34,11 +34,11 @@ NOTE: This lab has not been hardened in any way and runs with default vagrant cr
 For now, the best way to instantiate ESEL is by using the Vagrant components.
 
 1. Install the Virtualbox and Vagrant, if not already installed.  
-* Install Vagrant https://www.vagrantup.com/
-* Install Virtualbox 6.0 https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
-NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
+  * Vagrant https://www.vagrantup.com/
+  * Virtualbox 6.0 https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
+    NOTE: Virtualbox 6.1 is not yet supported by Vagrant, so use 6.0
 
-2. 
+2.
 
 
 ---
