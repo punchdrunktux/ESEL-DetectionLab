@@ -68,8 +68,8 @@ install_caldera(){
 
 install_services(){
   #move the service files from staging to the services location
-  if [ -f "/opt/ControlTower/covenantc2.service" ]; then
-    mv /opt/ControlTower/covenantc2.service /lib/systemd/system/
+  if [ -f "/tmp/covenantc2.service" ]; then
+    mv /tmp/covenantc2.service /lib/systemd/system/
     chmod 644 /lib/systemd/system/covenantc2.service
     systemctl start covenantc2
     systemctl enable covenantc2
@@ -79,7 +79,7 @@ install_services(){
 
 }
 enable_sshd(){
-  sudo cp /opt/ControlTower/sshd_config /etc/ssh/
+  sudo cp /tmp/sshd_config /etc/ssh/
   sudo systemctl restart sshd
 
 }
@@ -132,16 +132,16 @@ install_splunk() {
     /opt/splunk/bin/splunk add index zeek -auth 'admin:changeme'
     /opt/splunk/bin/splunk add index suricata -auth 'admin:changeme'
     /opt/splunk/bin/splunk add index threathunting -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_forwarder/splunk-add-on-for-microsoft-windows_700.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/splunk-add-on-for-microsoft-sysmon_1062.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/asn-lookup-generator_110.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/lookup-file-editor_331.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/splunk-add-on-for-zeek-aka-bro_400.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/force-directed-app-for-splunk_200.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/punchcard-custom-visualization_130.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/sankey-diagram-custom-visualization_130.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/link-analysis-app-for-splunk_161.tgz -auth 'admin:changeme'
-    /opt/splunk/bin/splunk install app /opt/ControlTower/splunk_server/threathunting_141.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_forwarder/splunk-add-on-for-microsoft-windows_700.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/splunk-add-on-for-microsoft-sysmon_1062.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/asn-lookup-generator_110.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/lookup-file-editor_331.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/splunk-add-on-for-zeek-aka-bro_400.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/force-directed-app-for-splunk_200.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/punchcard-custom-visualization_130.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/sankey-diagram-custom-visualization_130.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/link-analysis-app-for-splunk_161.tgz -auth 'admin:changeme'
+    /opt/splunk/bin/splunk install app /tmp/splunk_server/threathunting_141.tgz -auth 'admin:changeme'
 
     # Install the Maxmind license key for the ASNgen App
     if [ ! -z $MAXMIND_LICENSE ]; then
@@ -151,7 +151,7 @@ install_splunk() {
     fi
 
     # Add custom Macro definitions for ThreatHunting App
-    cp /opt/ControlTower/splunk_server/macros.conf /opt/splunk/etc/apps/ThreatHunting/default/macros.conf
+    cp /tmp/splunk_server/macros.conf /opt/splunk/etc/apps/ThreatHunting/default/macros.conf
     # Fix Windows TA macros
     mkdir /opt/splunk/etc/apps/Splunk_TA_windows/local
     cp /opt/splunk/etc/apps/Splunk_TA_windows/default/macros.conf /opt/splunk/etc/apps/Splunk_TA_windows/local
@@ -162,8 +162,8 @@ install_splunk() {
     # Add a Splunk TCP input on port 9997
     echo -e "[splunktcp://9997]\nconnection_host = ip" >/opt/splunk/etc/apps/search/local/inputs.conf
     # Add props.conf and transforms.conf
-    cp /opt/ControlTower/splunk_server/props.conf /opt/splunk/etc/apps/search/local/
-    cp /opt/ControlTower/splunk_server/transforms.conf /opt/splunk/etc/apps/search/local/
+    cp /tmp/splunk_server/props.conf /opt/splunk/etc/apps/search/local/
+    cp /tmp/splunk_server/transforms.conf /opt/splunk/etc/apps/search/local/
     cp /opt/splunk/etc/system/default/limits.conf /opt/splunk/etc/system/local/limits.conf
     # Bump the memtable limits to allow for the ASN lookup table
     sed -i.bak 's/max_memtable_bytes = 10000000/max_memtable_bytes = 30000000/g' /opt/splunk/etc/system/local/limits.conf
@@ -188,7 +188,7 @@ display.page.home.dashboardId = /servicesNS/nobody/search/data/ui/views/logger_d
     if [ ! -d "/opt/splunk/etc/apps/search/local/data/ui/views" ]; then
       mkdir -p "/opt/splunk/etc/apps/search/local/data/ui/views"
     fi
-    cp /opt/ControlTower/splunk_server/logger_dashboard.xml /opt/splunk/etc/apps/search/local/data/ui/views || echo "Unable to find dashboard"
+    cp /tmp/splunk_server/logger_dashboard.xml /opt/splunk/etc/apps/search/local/data/ui/views || echo "Unable to find dashboard"
     # Reboot Splunk to make changes take effect
     /opt/splunk/bin/splunk restart
     /opt/splunk/bin/splunk enable boot-start
