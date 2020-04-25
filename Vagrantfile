@@ -28,8 +28,8 @@ Vagrant.configure("2") do |config|
         cfg.vm.hostname = "20-ControlTower"
         cfg.vm.network :private_network, ip: ControlTower_IP, gateway: GW, dns: DNS
         cfg.vm.provision :shell, path: "scripts/bootstrap_ct.sh"
-        #cfg.vm.provision "file", source: "~/dev/ESEL-DetectionLab/Vagrant/resources/ControlTower", destination: "/tmp/"
-        #cfg.vm.provision "shell", inline: "sudo mv /tmp/ControlTower /opt/; dos2unix -q /opt/ControlTower/*; chmod +x /opt/ControlTower/*.sh"
+        cfg.vm.provision "file", source: "~/dev/ESEL-DetectionLab/resources/ControlTower", destination: "/tmp/"
+        cfg.vm.provision "shell", inline: "sudo mv /tmp/ControlTower /opt/; dos2unix -q /opt/ControlTower/*; chmod +x /opt/ControlTower/*.sh"
         #replace the SSH configuration to allow SSH
         #cfg.vm.provision "shell", inline: "sudo cp /opt/ControlTower/sshd_config /etc/ssh/sshd_config; sudo systemctl restart ssh"
         #put covenant data file back.
