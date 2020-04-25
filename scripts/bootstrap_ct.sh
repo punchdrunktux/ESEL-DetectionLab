@@ -203,8 +203,8 @@ main() {
   apt_update
   enable_sshd
   install_basics
- # install_covenant
- # install_caldera
+  install_covenant
+  install_caldera
 #  install_services
   install_splunk
   echo "----------------------------------------------------------------------------------------------"
